@@ -5,9 +5,6 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/inertia-react";
 
 export default function Authenticated({ auth, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="p-4 bg-white shadow">
