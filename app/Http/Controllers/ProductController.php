@@ -27,6 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+
+        return Inertia::render('Products/ProductForm');
     }
 
     /**
@@ -37,14 +39,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->validate([
+        $validated = $request->validate([
             'name' => 'required|alpha_num',
             'description' => 'required|alpha_num',
             'price' => 'required|numeric',
-            'image_url' => 'required|alpha_num',
-        ]));
+            'image' => 'required|image|max:12000|mimes:jpg,png,jpeg'
+        ]);
 
-        Storage::put("public/$product->id", $request->image);
+        $imageName = time() . '-' . $request->name . '.' . $request->image->extension();
+
+        unset($validated['image']);
+
+        Product::create(array_combine($validated, ['image_url' => $imageName]));
+
+        $image = $request->image;
+
+        Storage::put("public/$imageName", $image);
 
         return Redirect::route('products');
     }
