@@ -43,15 +43,6 @@ export default function (props) {
 
                     <form onSubmit={submit} className="">
                         <Label forInput="email" value="Email" />
-                        {/* <Input
-                            name="name"
-                            type="text"
-                            value={data.name}
-                            className="mb-4 mt-2 rounded border-gray-100 border-b-gray-300 shadow focus:border-blue-300 focus:ring-0"
-                            autoComplete={true}
-                            handleChange={onHandleChange}
-                            isFocused={true}
-                        /> */}
                         <Input
                             name="name"
                             type="text"
@@ -72,7 +63,7 @@ export default function (props) {
                             handleChange={onHandleChange}
                         />
                         {errors.description && <div>{errors.description}</div>}
-                        <Label forInput="price" value="Price (Cents)" />
+                        <Label forInput="price" value="Price (In Cents)" />
                         <Input
                             name="price"
                             type="text"
@@ -81,7 +72,17 @@ export default function (props) {
                             autoComplete="price"
                             handleChange={onHandleChange}
                         />
-                        {errors.description && <div>{errors.price}</div>}
+                        {errors.price && <div>{errors.price}</div>}
+                        <Label forInput="image" value="Product Image" />
+                        <Input
+                            name="image"
+                            type="file"
+                            value={data.image}
+                            className="mb-4 mt-2 w-full border-gray-200 border-4 p-4 border-dashed"
+                            autoComplete="price"
+                            handleChange={onHandleChange}
+                        />
+                        {errors.image && <div>{errors.image}</div>}
                         <button
                             type="submit"
                             className="rounded mt-4 px-4 py-2 bg-blue-500 text-white hover:bg-blue-400 shadow"
