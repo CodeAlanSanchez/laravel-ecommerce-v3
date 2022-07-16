@@ -31,14 +31,14 @@ export default function (props) {
 
     return (
         <Authenticated auth={props.auth}>
-            <div className="mx-auto w-min pt-8 pb-32">
+            <div className="p-8">
                 <Head title="Products" />
 
                 <Link href="/">
-                    <ApplicationLogo className="w-20 h-20 my-8 mx-auto fill-current text-gray-500" />
+                    <ApplicationLogo className="w-16 h-16 mb-6 mx-auto fill-current text-gray-500" />
                 </Link>
 
-                <div className="rounded p-4 shadow bg-white w-72 sm:min-w-max">
+                <div className="rounded p-6 shadow bg-white w-72 sm:min-w-max mx-auto">
                     <h1 className="text-2xl mb-4 text-center">Product Form</h1>
 
                     {/* <ValidationErrors errors={errors} /> */}
