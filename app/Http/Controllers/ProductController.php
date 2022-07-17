@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Products');
+        return Inertia::render('Products', ['products' => Product::all()]);
     }
 
     /**
@@ -40,23 +40,19 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|alpha_num',
-            'description' => 'required|alpha_num',
+            'name' => 'required|string',
+            'description' => 'required|string',
             'price' => 'required|numeric',
-            'image' => 'required|image|max:12000|mimes:jpg,png,jpeg'
+            'image' => 'required|max:12000'
         ]);
 
-        $imageName = time() . '-' . $request->name . '.' . $request->image->extension();
+        $image_path = $request->file('image')->store('image', 'public');
 
         unset($validated['image']);
 
-        Product::create(array_combine($validated, ['image_url' => $imageName]));
+        Product::create(array_merge($validated, ['image_url' => $image_path]));
 
-        $image = $request->image;
-
-        Storage::put("public/$imageName", $image);
-
-        return Redirect::route('products');
+        return Redirect::route('welcome');
     }
 
     /**
