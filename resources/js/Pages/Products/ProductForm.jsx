@@ -56,7 +56,7 @@ export default function (props) {
                             name="name"
                             type="text"
                             value={data.name}
-                            className="mb-4 mt-2 block w-ful after:text-red-400l"
+                            className="mb-4 mt-2 block w-full after:text-red-400l"
                             autoComplete="name"
                             handleChange={onHandleChange}
                             isFocused={true}
@@ -136,13 +136,13 @@ export default function (props) {
                             value="Product Image"
                             className="required after:text-red-400"
                         />
-                        <Input
-                            name="image"
+                        <input
                             type="file"
-                            value={data.image}
+                            name="image"
                             className="mb-4 mt-2 w-full border-gray-200 border-4 p-4 border-dashed focus:outline-none hover:cursor-pointer hover:border-indigo-200"
-                            autoComplete="price"
-                            handleChange={onHandleChange}
+                            onChange={(e) =>
+                                setData("image", e.target.files[0])
+                            }
                         />
                         <button
                             type="submit"
