@@ -1,7 +1,7 @@
 import React from "react";
 import { Head } from "@inertiajs/inertia-react";
 import Authenticated from "../Layouts/Authenticated";
-import ProductItem from "../Components/ProductItem";
+import ProductList from "../Components/ProductList";
 
 export default function Welcome(props) {
     const products = props.products;
@@ -17,14 +17,7 @@ export default function Welcome(props) {
                     <h1 className="text-3xl">Products</h1>
                     <p className="text-xl font-light text-gray-600 mb-6">Men</p>
                 </div>
-                <div className="grid text-2xl sm:grid-cols-2 lg:grid-cols-4 lg:text-xl gap-4">
-                    {products.length === 0
-                        ? '<h1 className="text-2xl sm:text-xl">No products found...</h1>'
-                        : null}
-                    {products.map((p) => (
-                        <ProductItem product={p} />
-                    ))}
-                </div>
+                <ProductList products={products} />
             </div>
         </Authenticated>
     );
