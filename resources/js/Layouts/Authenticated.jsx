@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/inertia-react";
 
 export default function Authenticated({ auth, children }) {
@@ -48,7 +46,9 @@ export default function Authenticated({ auth, children }) {
                                         <Dropdown.Link>Profile</Dropdown.Link>
                                     </div>
                                     <div className="hover:text-sky-700 text-lg">
-                                        <Dropdown.Link>Logout</Dropdown.Link>
+                                        <Dropdown.Link href="/logout">
+                                            Logout
+                                        </Dropdown.Link>
                                     </div>
                                 </div>
                             </Dropdown.Content>
