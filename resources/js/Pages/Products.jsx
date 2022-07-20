@@ -9,7 +9,7 @@ const Products = (props) => {
         <Authenticated auth={props.auth}>
             <Head title="Products" />
 
-            <div className="mx-auto max-w-7xl py-16">
+            <div className="py-12 sm:px-24 px-4 max-w-7xl mx-auto">
                 <h1 className="text-3xl mb-4 inline-block mr-2">Products</h1>{" "}
                 <span className="text-blue-400 hover:underline">
                     <Link href="/products/create">Create</Link>
