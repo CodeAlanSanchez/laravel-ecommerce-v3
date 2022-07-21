@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Dropdown from "@/Components/Dropdown";
 import { Link } from "@inertiajs/inertia-react";
 
@@ -43,7 +43,12 @@ export default function Authenticated({ auth, children }) {
                             <Dropdown.Content>
                                 <div className="p-4">
                                     <div className="hover:text-sky-700 text-lg">
-                                        <Dropdown.Link>Profile</Dropdown.Link>
+                                        <Link
+                                            className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                            href="/profile"
+                                        >
+                                            Profile
+                                        </Link>
                                     </div>
                                     <div className="hover:text-sky-700 text-lg">
                                         <Dropdown.Link href="/logout">
