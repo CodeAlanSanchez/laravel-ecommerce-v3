@@ -37,4 +37,8 @@ Route::get('/dashboard', function () {
 
 Route::resource('/products', \App\Http\Controllers\ProductController::class)->middleware(['auth', 'verified']);
 
+Route::get('/profile', function () {
+    return Inertia::render('Profile');
+});
+
 require __DIR__ . '/auth.php';
