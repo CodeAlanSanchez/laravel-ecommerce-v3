@@ -17,4 +17,9 @@ class Product extends Model
         'gender',
         'image_url'
     ];
+
+    public function cartProducts()
+    {
+        return $this->belongsToMany(CartProduct::class);
+    }
 }
