@@ -11,10 +11,13 @@ export default function Authenticated({ auth, children }) {
                         Home
                     </Link>
                     <Link
-                        className="hover:text-sky-700 text-lg"
+                        className="hover:text-sky-700 text-lg mr-12"
                         href="/products"
                     >
                         Products
+                    </Link>
+                    <Link className="hover:text-sky-700 text-lg" href="/cart">
+                        Cart
                     </Link>
                     <div className="hidden sm:flex sm:items-center align-middle float-right">
                         <Dropdown>
