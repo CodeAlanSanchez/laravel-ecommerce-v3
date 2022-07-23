@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -39,6 +41,14 @@ Route::resource('/products', \App\Http\Controllers\ProductController::class)->mi
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');
+});
+
+Route::get('/cart', function () {
+    $user = Auth::user();
+
+    $cart = Cart::where('user_id', $user->id);
+
+    return Inertia::render('Cart', ['cart' => $cart]);
 });
 
 require __DIR__ . '/auth.php';
