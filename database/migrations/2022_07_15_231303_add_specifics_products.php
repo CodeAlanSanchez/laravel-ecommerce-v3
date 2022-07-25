@@ -30,6 +30,7 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->removeColumn('gender');
             $table->removeColumn('discount_price');
+            $table->removeColumn('clothing_type');
         });
     }
 };
