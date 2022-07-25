@@ -1,9 +1,12 @@
 <?php
 
 use App\Models\Cart;
+use App\Models\CartProduct;
 use App\Models\Product;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -49,6 +52,21 @@ Route::get('/cart', function () {
     $cart = Cart::where('user_id', $user->id);
 
     return Inertia::render('Cart', ['cart' => $cart]);
-});
+})->middleware(['auth'])->name('cart');
+
+Route::post('/cart', function (Request $request) {
+    $user = Auth::user();
+
+    $cart = Cart::where('user_id', $user->id);
+
+    $validated = $request->validate([
+        'product_id' => 'required|numeric',
+        'amount' => 'required|numeric',
+    ]);
+
+    $cart->cartProducts()->create($validated);
+
+    return Redirect::route('cart');
+})->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
