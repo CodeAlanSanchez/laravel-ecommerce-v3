@@ -1,9 +1,18 @@
 import Authenticated from "@/Layouts/Authenticated";
+import { Inertia } from "@inertiajs/inertia";
 import { Head } from "@inertiajs/inertia-react";
+import { useState } from "react";
 
 export default function Product(props) {
     const auth = props.auth;
     const product = props.product;
+    const [amount, setAmount] = useState(1);
+
+    const onCart = (e) => {
+        e.preventDefault();
+
+        Inertia.post("/cart", { product_id: product.id, amount });
+    };
 
     return (
         <Authenticated auth={auth}>
@@ -35,7 +44,10 @@ export default function Product(props) {
                         <h1 className="text-xl mb-4 text-stone-700">
                             {product.description}
                         </h1>
-                        <button className="text-xl py-2 px-4 shadow rounded bg-blue-500 text-white hover:bg-blue-400">
+                        <button
+                            onClick={(e) => onCart(e)}
+                            className="text-xl py-2 px-4 w-fit shadow rounded bg-blue-500 text-white hover:bg-blue-400"
+                        >
                             Add To Cart
                         </button>
                     </div>
