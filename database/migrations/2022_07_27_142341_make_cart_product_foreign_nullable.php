@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cart_products', function (Blueprint $table) {
-            $table->foreignId('cart_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->nullable()->constrained()->onDelete('cascade');
+            $table->integer('cart_id')->nullable()->unsigned()->change();
+            $table->integer('product_id')->nullable()->unsigned()->change();
         });
     }
 
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('cart_products', function (Blueprint $table) {
-            $table->foreignId('cart_id')->nullable(false)->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->nullable(false)->constrained()->onDelete('cascade');
+            $table->integer('cart_id')->nullable(false)->unsigned()->change();
+            $table->integer('product_id')->nullable(false)->unsigned()->change();
         });
     }
 };
