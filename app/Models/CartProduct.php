@@ -3,27 +3,30 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CartProduct extends Pivot
+class CartProduct extends Model
 {
     use HasFactory;
 
-    protected $table = 'cart_products';
+    // protected $table = 'cart_products';
 
     protected $fillable = [
-        'amount'
+        'amount',
+        'cart_id',
+        'product_id',
     ];
 
     public $incrementing = true;
 
     public function cart()
     {
-        return $this->hasOne(Cart::class);
+        return $this->belongsTo(Cart::class);
     }
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }
