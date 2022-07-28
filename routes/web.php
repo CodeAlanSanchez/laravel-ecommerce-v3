@@ -57,14 +57,20 @@ Route::get('/cart', function () {
 Route::post('/cart', function (Request $request) {
     $user = Auth::user();
 
-    $cart = Cart::where('user_id', $user->id);
+    $cart = Cart::where('user_id', $user->id)->first();
 
     $validated = $request->validate([
         'product_id' => 'required|numeric',
         'amount' => 'required|numeric',
     ]);
 
-    $cart->cartProducts()->create($validated);
+    $product = Product::find($validated['product_id']);
+
+    $cartProduct = CartProduct::create($validated);
+
+    $cart->cartProducts()->save($cartProduct);
+
+    $product->cartProducts()->save($cartProduct);
 
     return Redirect::route('cart');
 })->middleware(['auth']);
