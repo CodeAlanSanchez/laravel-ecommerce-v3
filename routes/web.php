@@ -49,9 +49,11 @@ Route::get('/profile', function () {
 Route::get('/cart', function () {
     $user = Auth::user();
 
-    $cart = Cart::where('user_id', $user->id);
+    $cart = Cart::where('user_id', $user->id)->first();
 
-    return Inertia::render('Cart', ['cart' => $cart]);
+    $cartItems = CartProduct::where('cart_id', $cart->id)->with('product')->get();
+
+    return Inertia::render('Cart', ['cart_items' => $cartItems]);
 })->middleware(['auth'])->name('cart');
 
 Route::post('/cart', function (Request $request) {
