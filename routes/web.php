@@ -46,35 +46,8 @@ Route::get('/profile', function () {
     return Inertia::render('Profile');
 });
 
-Route::get('/cart', function () {
-    $user = Auth::user();
+Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->middleware(['auth'])->name('cart');
 
-    $cart = Cart::where('user_id', $user->id)->first();
-
-    $cartItems = CartProduct::where('cart_id', $cart->id)->with('product')->get();
-
-    return Inertia::render('Cart', ['cart_items' => $cartItems]);
-})->middleware(['auth'])->name('cart');
-
-Route::post('/cart', function (Request $request) {
-    $user = Auth::user();
-
-    $cart = Cart::where('user_id', $user->id)->first();
-
-    $validated = $request->validate([
-        'product_id' => 'required|numeric',
-        'amount' => 'required|numeric',
-    ]);
-
-    $product = Product::find($validated['product_id']);
-
-    $cartProduct = CartProduct::create($validated);
-
-    $cart->cartProducts()->save($cartProduct);
-
-    $product->cartProducts()->save($cartProduct);
-
-    return Redirect::route('cart');
-})->middleware(['auth']);
+Route::post('/cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
