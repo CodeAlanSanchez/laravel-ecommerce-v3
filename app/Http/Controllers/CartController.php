@@ -23,6 +23,14 @@ class CartController extends Controller
             'amount' => 'required|numeric',
         ]);
 
+        if ($cartItem = CartProduct::where('cart_id', $cart->id)->firstOrFail()) {
+            $cartItem->amount = $cartItem->amount + 1;
+
+            $cartItem->save();
+
+            return Redirect::route('cart');
+        }
+
         $product = Product::find($validated['product_id']);
 
         $cartProduct = CartProduct::create($validated);
@@ -40,8 +48,24 @@ class CartController extends Controller
 
         $cart = Cart::where('user_id', $user->id)->first();
 
-        $cartItems = CartProduct::where('cart_id', $cart->id)->with('product')->get();
+        $cartItems = CartProduct::where('cart_id', $cart->id)->with('product')->orderBy('id')->get();
 
         return Inertia::render('Cart', ['cart_items' => $cartItems]);
+    }
+
+    public function changeAmount(Request $request, $id)
+    {
+        $cartProduct = CartProduct::where(['id' => $id])->first();
+
+        $validate = $request->validate([
+            'amount' => 'required|numeric',
+        ]);
+
+        $cartProduct->amount = $validate['amount'];
+
+        $cartProduct->save();
+
+
+        return Redirect::route('cart');
     }
 }
