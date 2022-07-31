@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 
-export default function ({item}) {
+export default function ({ item }) {
     const [amountOptions, setAmountOptions] = useState([
         1, 2, 3, 4, 5, 6, 7, 8, 9
     ]);
@@ -12,7 +12,7 @@ export default function ({item}) {
 
         setAmount(e.target.value);
 
-        Inertia.put(`/cart/${item.id}/amount`, amount);
+        Inertia.put(`/cart/${item.id}/amount`, { amount: e.target.value });
     }
 
     return (
@@ -23,7 +23,7 @@ export default function ({item}) {
                 <h3 className="text-xl">{item.product.name}</h3>
                 <h3 className="text-lg text-gray-500">{item.product.description}</h3>
                 <div>
-                    <h3 className="text-lg mt-4">
+                    <h3 className="text-lg mt-2">
                         Amount
                     </h3>
                     <input
@@ -33,7 +33,7 @@ export default function ({item}) {
                         value={amount}
                         list="amountOptions"/>
                     <datalist id="amountOptions">
-                        {amountOptions.map(i => <option value={i}/>)}
+                        {amountOptions.map(i => <option key={i} value={i}/>)}
                     </datalist>
                 </div>
             </div>
