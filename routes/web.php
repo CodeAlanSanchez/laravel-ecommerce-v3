@@ -41,6 +41,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/products', \App\Http\Controllers\ProductController::class)->middleware(['auth', 'verified']);
+Route::get('/products/gender/{gender?}', [\App\Http\Controllers\ProductController::class, 'index'])->middleware('auth');
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');
