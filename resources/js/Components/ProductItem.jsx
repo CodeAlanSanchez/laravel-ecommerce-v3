@@ -5,7 +5,7 @@ export default function ProductItem({ product }) {
             className="p-2 shadow h-80 bg-white hover:cursor-pointer flex flex-col justify-between"
         >
             <img
-                src={`storage/${product.image_url}`}
+                src={`/storage/${product.image_url}`}
                 alt={product.name}
                 className="object-contain max-h-56"
             />
