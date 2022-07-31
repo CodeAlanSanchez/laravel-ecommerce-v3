@@ -50,4 +50,6 @@ Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->mid
 
 Route::post('/cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->middleware(['auth']);
 
+Route::put('/cart/{id}/amount', [\App\Http\Controllers\CartController::class, 'changeAmount'])->middleware(['auth']);
+
 require __DIR__ . '/auth.php';
