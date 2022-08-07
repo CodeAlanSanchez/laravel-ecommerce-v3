@@ -93,7 +93,28 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::first('id', $id);
+
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'image' => 'max:12000',
+            'discount' => 'numeric',
+            'gender' => 'alpha|nullable',
+        ]);
+
+        unset($validated['image']);
+
+        if ($file = $request->file('image')) {
+            $image_path = $file->store('image', 'public');
+
+            $validated['image_url'] = $image_path;
+        }
+
+        $product->update(array_merge($validated));
+
+        return Redirect::route('products.show', ['product' => $product]);
     }
 
     /**
