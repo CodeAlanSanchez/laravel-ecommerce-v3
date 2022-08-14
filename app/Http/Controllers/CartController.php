@@ -23,7 +23,7 @@ class CartController extends Controller
             'amount' => 'required|numeric',
         ]);
 
-        if ($cartItem = CartProduct::where('cart_id', $cart->id)->firstOrFail()) {
+        if ($cartItem = CartProduct::where('cart_id', $cart->id)->first()) {
             $cartItem->amount = $cartItem->amount + 1;
 
             $cartItem->save();
@@ -38,6 +38,21 @@ class CartController extends Controller
         $cart->cartProducts()->save($cartProduct);
 
         $product->cartProducts()->save($cartProduct);
+
+        return Redirect::route('cart');
+    }
+
+    public function removeFromCart($id)
+    {
+        $user = Auth::user();
+
+        $cartItem = CartProduct::where('user_id', $user->id)->where('id', $id)->first();
+
+        if ($cartItem) {
+            $cartItem->delete();
+
+            return Redirect::route('cart');
+        }
 
         return Redirect::route('cart');
     }
@@ -64,7 +79,6 @@ class CartController extends Controller
         $cartProduct->amount = $validate['amount'];
 
         $cartProduct->save();
-
 
         return Redirect::route('cart');
     }
