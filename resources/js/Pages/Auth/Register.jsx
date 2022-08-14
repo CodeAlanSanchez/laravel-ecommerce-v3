@@ -31,7 +31,10 @@ export default function Register() {
     };
 
     const onGuest = () => {
-        Inertia.post("/login", { name: "email", password: "password" });
+        Inertia.post("/login", {
+            email: "guest@guest.com",
+            password: "password",
+        });
     };
 
     const submit = (e) => {
@@ -124,6 +127,7 @@ export default function Register() {
                     <button
                         className="inline-flex items-center px-4 py-2 border rounded-md font-semibold text-xs uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 ml-4 text-blue-500 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white"
                         onClick={() => onGuest()}
+                        type="button"
                     >
                         Continue as Guest
                     </button>

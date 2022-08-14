@@ -6,6 +6,7 @@ import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,6 +34,13 @@ export default function Login({ status, canResetPassword }) {
         e.preventDefault();
 
         post(route("login"));
+    };
+
+    const onGuest = () => {
+        Inertia.post("/login", {
+            email: "guest@guest.com",
+            password: "password",
+        });
     };
 
     return (
@@ -105,12 +113,14 @@ export default function Login({ status, canResetPassword }) {
                     >
                         Log in
                     </Button>
-                    <Button
-                        className="ml-4 text-blue-500 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white"
-                        processing={processing}
+
+                    <button
+                        className="inline-flex items-center px-4 py-2 border rounded-md font-semibold text-xs uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 ml-4 text-blue-500 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white"
+                        onClick={() => onGuest()}
+                        type="button"
                     >
                         Continue as Guest
-                    </Button>
+                    </button>
                 </div>
             </form>
         </Guest>
