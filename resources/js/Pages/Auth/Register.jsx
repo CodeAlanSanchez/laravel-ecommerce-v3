@@ -122,7 +122,7 @@ export default function Register() {
                     </Button>
 
                     <button
-                        className="inline-flex items-center px-4 py-2 border rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 ml-4 text-blue-500 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white"
+                        className="inline-flex items-center px-4 py-2 border rounded-md font-semibold text-xs uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 ml-4 text-blue-500 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white"
                         onClick={() => onGuest()}
                     >
                         Continue as Guest
