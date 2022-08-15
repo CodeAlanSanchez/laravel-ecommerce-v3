@@ -16,7 +16,7 @@ export default function ({ item }) {
     };
 
     const handleDelete = () => {
-        Inertia.delete("/cart", { cartProductId: item.id });
+        Inertia.delete(`/cart/${item.product.id}`);
     };
 
     return (
