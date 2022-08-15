@@ -22,4 +22,9 @@ class Product extends Model
     {
         return $this->hasMany(CartProduct::class);
     }
+
+    public function productAnalytics()
+    {
+        return $this->hasOne(productAnalytics::class);
+    }
 }
