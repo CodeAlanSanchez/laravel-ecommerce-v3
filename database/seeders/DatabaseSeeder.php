@@ -17,7 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory()->count(25)->create();
+        Product::factory()->count(25)->create()->each(function ($product) {
+            $product->productAnalytics()->create([
+                'product' => $product->id,
+                'views' => 0,
+                'favorites' => 0,
+                'cart_adds' => 0
+            ]);
+        });
 
         $user = User::create([
             "name" => "guest",
