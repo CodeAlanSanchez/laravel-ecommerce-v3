@@ -33,6 +33,10 @@ class CartController extends Controller
 
         $product = Product::find($validated['product_id']);
 
+        $product->productAnalytics->cart_adds = $product->productAnalytics->cart_adds + 1;
+
+        $product->productAnalytics->save();
+
         $cartProduct = CartProduct::create($validated);
 
         $cart->cartProducts()->save($cartProduct);

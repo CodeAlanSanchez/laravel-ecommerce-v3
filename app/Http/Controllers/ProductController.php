@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductAnalytics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -69,6 +70,10 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+
+        $product->productAnalytics->views = $product->productAnalytics->views + 1;
+
+        $product->productAnalytics->save();
 
         return Inertia::render('Product', ['product' => $product]);
     }
