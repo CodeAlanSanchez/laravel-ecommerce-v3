@@ -25,6 +25,6 @@ class Product extends Model
 
     public function productAnalytics()
     {
-        return $this->hasOne(productAnalytics::class);
+        return $this->hasOne(ProductAnalytics::class);
     }
 }
