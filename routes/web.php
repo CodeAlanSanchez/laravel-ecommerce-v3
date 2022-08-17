@@ -31,9 +31,11 @@ Route::get('/', function () {
 });
 
 Route::get('/', function () {
-    $products = Product::all();
+    $trending = Product::whereHas('productAnalytics', function ($q) {
+        return $q->where('views', '>', 0);
+    })->get();
 
-    return Inertia::render('Welcome', ['products' => $products]);
+    return Inertia::render('Welcome', ['products' => Product::all(), 'trending' => $trending]);
 })->middleware(['auth', 'verified'])->name('welcome');
 
 Route::get('/dashboard', function () {
