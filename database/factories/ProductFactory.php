@@ -16,11 +16,14 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $gender = fake()->randomElement(['male', 'female']);
+
         return [
             'name' => fake()->colorName(),
             'description' => fake()->realTextBetween(),
             'image_url' => "image/placeholder_image.jpg",
             'price' => fake()->numberBetween(0, 99999),
+            'gender' => $gender
         ];
     }
 }
