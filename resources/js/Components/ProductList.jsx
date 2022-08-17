@@ -1,16 +1,28 @@
 import ProductItem from "./ProductItem";
 
-export default function ({ products, filter }) {
+export default function ({ products, filter, trending }) {
     return (
         <div>
+            <h1 className="text-xl my-4">Trending</h1>
+            <div className="grid text-2xl sm:grid-cols-2 lg:grid-cols-4 lg:txt-xl gap-4">
+                {trending?.length === 0 ? (
+                    <p className="text-sm text-gray-600 font-light">
+                        No products found...
+                    </p>
+                ) : (
+                    trending?.map((t) => <ProductItem key={t.id} product={t} />)
+                )}
+            </div>
+            <h1 className="text-xl my-4">Products</h1>
             <div className="grid text-2xl sm:grid-cols-2 lg:grid-cols-4 lg:text-xl gap-4">
                 {products.length === 0 ? (
-                    <p className="text-md text-gray-600 font-light">
+                    <p className="text-sm text-gray-600 font-light">
                         No products found...
                     </p>
                 ) : null}
+
                 {products.map((p) => (
-                    <ProductItem product={p} />
+                    <ProductItem key={p.id} product={p} />
                 ))}
             </div>
         </div>
