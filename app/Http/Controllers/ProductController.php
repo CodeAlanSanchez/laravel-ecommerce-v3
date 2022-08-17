@@ -18,10 +18,25 @@ class ProductController extends Controller
      */
     public function index($gender = null)
     {
-        if ($gender)
-            return Inertia::render('Products', ['products' => Product::where('gender', $gender)->get(), 'gender' => $gender]);
+        if ($gender) {
+            $trending = Product::whereHas('productAnalytics', function ($q) {
+                return $q->where('views', '>', 0);
+            })->where('gender', $gender)->get();
 
-        return Inertia::render('Products', ['products' => Product::all()]);
+            return Inertia::render(
+                'Products',
+                [
+                    'products' => Product::where('gender', $gender)->get(),
+                    'gender' => $gender, 'trending' => $trending
+                ]
+            );
+        }
+
+        $trending = Product::whereHas('productAnalytics', function ($q) {
+            return $q->where('views', '>', 0);
+        })->get();
+
+        return Inertia::render('Products', ['products' => Product::all(), 'trending' => $trending]);
     }
 
     /**
@@ -31,7 +46,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-
         return Inertia::render('Products/ProductForm');
     }
 
@@ -56,7 +70,14 @@ class ProductController extends Controller
 
         unset($validated['image']);
 
-        Product::create(array_merge($validated, ['image_url' => $image_path]));
+        $product = Product::create(array_merge($validated, ['image_url' => $image_path]));
+
+        $product->productAnalytics()->create([
+            'product_id' => $product->id,
+            'views' => 0,
+            'favorites' => 0,
+            'cart_adds' => 0
+        ]);
 
         return Redirect::route('welcome');
     }
