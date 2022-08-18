@@ -21,6 +21,8 @@ use Inertia\Inertia;
 |
 */
 
+// Authentication
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -30,6 +32,8 @@ Route::get('/', function () {
     ]);
 });
 
+// Welcome
+
 Route::get('/', function () {
     $trending = Product::whereHas('productAnalytics', function ($q) {
         return $q->where('views', '>', 0);
@@ -38,16 +42,25 @@ Route::get('/', function () {
     return Inertia::render('Welcome', ['products' => Product::all(), 'trending' => $trending]);
 })->middleware(['auth', 'verified'])->name('welcome');
 
+// Dashboard
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('/products', \App\Http\Controllers\ProductController::class)->middleware(['auth', 'verified']);
-Route::get('/products/gender/{gender?}', [\App\Http\Controllers\ProductController::class, 'index'])->middleware('auth');
+// Profile Routes
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');
 });
+
+// Product Routes
+
+Route::resource('/products', \App\Http\Controllers\ProductController::class)->middleware(['auth', 'verified']);
+Route::get('/products/gender/{gender?}', [\App\Http\Controllers\ProductController::class, 'index'])->middleware('auth');
+Route::put('/products/{id}/favorite', [\App\Http\Controllers\ProductController::class, 'favorite'])->middleware('auth');
+
+// Cart Routes
 
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->middleware(['auth'])->name('cart');
 
