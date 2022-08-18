@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductAnalytics::class);
     }
+
+    public function userFavorite()
+    {
+        return $this->belongsToMany(User::class, 'user_favorites');
+    }
 }
