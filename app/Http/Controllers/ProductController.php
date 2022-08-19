@@ -19,25 +19,21 @@ class ProductController extends Controller
      */
     public function index($gender = null)
     {
-        if ($gender) {
-            $trending = Product::whereHas('productAnalytics', function ($q) {
-                return $q->where('views', '>', 0);
-            })->where('gender', $gender)->get();
+        $trending = Product::whereHas('productAnalytics', function ($q) {
+            return $q->where('views', '>', 0);
+        });
 
+        if ($gender) {
             return Inertia::render(
                 'Products',
                 [
                     'products' => Product::where('gender', $gender)->get(),
-                    'gender' => $gender, 'trending' => $trending
+                    'gender' => $gender, 'trending' => $trending->where('gender', $gender)->get()
                 ]
             );
         }
 
-        $trending = Product::whereHas('productAnalytics', function ($q) {
-            return $q->where('views', '>', 0);
-        })->get();
-
-        return Inertia::render('Products', ['products' => Product::all(), 'trending' => $trending]);
+        return Inertia::render('Products', ['products' => Product::all(), 'trending' => $trending->get()]);
     }
 
     /**
