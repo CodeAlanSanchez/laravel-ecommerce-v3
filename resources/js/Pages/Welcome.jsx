@@ -3,7 +3,6 @@ import { Head } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
 import ProductList from "@/Components/ProductList";
 import FilterDot from "@/Components/FilterDot";
-import { useEffect } from "react";
 
 export default function Welcome(props) {
     const products = props.products;
