@@ -18,6 +18,15 @@ class Product extends Model
         'image_url'
     ];
 
+    protected $appends = [
+        'favorite'
+    ];
+
+    public function getFavoriteAttribute()
+    {
+        return $this->userFavorite()->get();
+    }
+
     public function cartProducts()
     {
         return $this->hasMany(CartProduct::class);
