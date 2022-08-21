@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Exists;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -163,8 +164,21 @@ class ProductController extends Controller
 
         $product->productAnalytics()->increment('favorites', $validated['favorite']);
 
-        $user->favorite()->attach($product->id);
-
-        return Redirect::route('products.show', ['product' => $product]);
+        // Check if product is favorited by user
+        if ($product->whereHas('userFavorite', function ($q) use ($user, $product) {
+            return $q->where("user_id", $user->id)->where('product_id', $product->id);
+        })->get()->isNotEmpty()) {
+            // favorited
+            $user->favorite()->detach($product->id);
+            return response()->json([
+                'favorite' => false
+            ]);
+        } else {
+            // not favorited
+            $user->favorite()->attach($product->id);
+            return response()->json([
+                'favorite' => true
+            ]);
+        }
     }
 }
