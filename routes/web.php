@@ -70,4 +70,16 @@ Route::post('/cart', [\App\Http\Controllers\CartController::class, 'addToCart'])
 
 Route::put('/cart/{id}/amount', [\App\Http\Controllers\CartController::class, 'changeAmount'])->middleware(['auth']);
 
+// Checkout
+
+Route::get('/checkout', function () {
+    $user = Auth::user();
+
+    $cart = Cart::where('user_id', $user->id)->first();
+
+    $cartItems = CartProduct::where('cart_id', $cart->id)->with('product')->orderBy('id')->get();
+
+    return Inertia::render('Checkout', ['cart_items' => $cartItems]);
+});
+
 require __DIR__ . '/auth.php';
