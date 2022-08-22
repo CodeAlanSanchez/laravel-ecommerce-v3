@@ -69,7 +69,7 @@ function Options() {
 function Summary({ totalPrice }) {
     return (
         <div>
-            <h2 className="my-4 text-xl text-gray-700">Payment Options</h2>
+            <h2 className="my-4 text-xl text-gray-700">Total</h2>
             <div className="bg-white rounded p-4 md:p-8 md:text-lg shadow flex flex-col text-gray-700">
                 <Detail k={"Subtotal"} value={`$${totalPrice / 100}`} />
                 <Detail k={"Shipping"} value={"$5"} />
