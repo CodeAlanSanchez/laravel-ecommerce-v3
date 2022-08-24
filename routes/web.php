@@ -93,12 +93,12 @@ Route::post('/admin/{name}', function (Request $request, $name) {
     if ($image = $request->file('image')) {
         $fileName = "";
         match ($name) {
-            'placeholder' => $fileName = 'placeholder_image',
+            'placeholder' => $fileName = 'placeholder',
             'men' => $fileName = 'men',
             'women' => $fileName = 'women',
         };
 
-        $image->storeAs('image', $fileName . ".jpg", 'public');
+        $image->storeAs('image', $fileName . ".png", 'public');
     }
 
     return Redirect::back();

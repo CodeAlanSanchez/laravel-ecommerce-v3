@@ -21,7 +21,7 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->colorName(),
             'description' => fake()->realTextBetween(),
-            'image_url' => "image/placeholder_image.jpg",
+            'image_url' => "image/placeholder.png",
             'price' => fake()->numberBetween(0, 99999),
             'gender' => $gender
         ];
