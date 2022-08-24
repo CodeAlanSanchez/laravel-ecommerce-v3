@@ -82,4 +82,26 @@ Route::get('/checkout', function () {
     return Inertia::render('Checkout', ['cart_items' => $cartItems]);
 });
 
+// Admin
+
+Route::get("/admin", function () {
+    return Inertia::render('Admin');
+});
+
+Route::post('/admin/{name}', function (Request $request, $name) {
+
+    if ($image = $request->file('image')) {
+        $fileName = "";
+        match ($name) {
+            'placeholder' => $fileName = 'placeholder_image',
+            'men' => $fileName = 'men',
+            'women' => $fileName = 'women',
+        };
+
+        $image->storeAs('image', $fileName . ".jpg", 'public');
+    }
+
+    return Redirect::back();
+});
+
 require __DIR__ . '/auth.php';
