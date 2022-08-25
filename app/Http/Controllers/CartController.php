@@ -23,7 +23,7 @@ class CartController extends Controller
             'amount' => 'required|numeric',
         ]);
 
-        if ($cartItem = CartProduct::where('cart_id', $cart->id)->first()) {
+        if ($cartItem = CartProduct::where('cart_id', $cart->id)->where('product_id', $validated['product_id'])->first()) {
             $cartItem->amount = $cartItem->amount + 1;
 
             $cartItem->save();
