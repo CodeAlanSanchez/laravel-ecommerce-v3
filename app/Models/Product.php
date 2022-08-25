@@ -22,6 +22,11 @@ class Product extends Model
         'favorite'
     ];
 
+    public function trending()
+    {
+        return $this->hasOne(ProductAnalytics::class)->where('views', '>', '0');
+    }
+
     public function getFavoriteAttribute()
     {
         return $this->userFavorite()->get();

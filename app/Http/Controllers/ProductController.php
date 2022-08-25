@@ -20,9 +20,7 @@ class ProductController extends Controller
      */
     public function index($gender = null)
     {
-        $trending = Product::whereHas('productAnalytics', function ($q) {
-            return $q->where('views', '>', 0);
-        });
+        $trending = Product::whereHas('trending')->limit(8);
 
         if ($gender) {
             return Inertia::render(
@@ -34,7 +32,10 @@ class ProductController extends Controller
             );
         }
 
-        return Inertia::render('Products', ['products' => Product::all(), 'trending' => $trending->get()]);
+        return Inertia::render('Products', [
+            'products' => Product::all(),
+            'trending' => $trending->get()
+        ]);
     }
 
     /**
