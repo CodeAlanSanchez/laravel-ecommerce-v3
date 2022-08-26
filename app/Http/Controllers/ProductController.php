@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index($gender = null)
     {
-        $trending = Product::whereHas('trending')->limit(8);
+        $trending = Product::whereHas('trending')->limit(4);
 
         if ($gender) {
             return Inertia::render(
