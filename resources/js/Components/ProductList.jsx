@@ -1,6 +1,17 @@
+import { useState } from "react";
 import ProductItem from "./ProductItem";
 
 export default function ({ products, filter, trending }) {
+    const [trenders, _] = useState(
+        trending.sort((a, b) => {
+            if (a.views < b.views) {
+                return 1;
+            } else if (a.views === b.views) {
+                return 0;
+            }
+            return -1;
+        })
+    );
     return (
         <div>
             <h1 className="text-xl my-4">Trending</h1>
@@ -10,7 +21,7 @@ export default function ({ products, filter, trending }) {
                         No products found...
                     </p>
                 ) : (
-                    trending?.map((t) => <ProductItem key={t.id} product={t} />)
+                    trenders.map((t) => <ProductItem key={t.id} product={t} />)
                 )}
             </div>
             <h1 className="text-xl my-4">Products</h1>
