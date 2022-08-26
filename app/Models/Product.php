@@ -19,7 +19,8 @@ class Product extends Model
     ];
 
     protected $appends = [
-        'favorite'
+        'favorite',
+        'views'
     ];
 
     public function trending()
@@ -30,6 +31,11 @@ class Product extends Model
     public function getFavoriteAttribute()
     {
         return $this->userFavorite()->get();
+    }
+
+    public function getViewsAttribute()
+    {
+        return $this->productAnalytics->views;
     }
 
     public function cartProducts()
