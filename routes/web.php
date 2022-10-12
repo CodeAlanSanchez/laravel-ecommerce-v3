@@ -50,7 +50,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');
-});
+})->middleware(['auth', 'verified']);
 
 // Product Routes
 
