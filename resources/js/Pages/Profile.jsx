@@ -10,19 +10,11 @@ export default function (props) {
                 <div className="bg-white p-4 shadow grid md:grid-cols-2 gap-4">
                     <div>
                         <h1 className="text-xl">Email</h1>
-                        <p className="text-stone-600">email</p>
+                        <p className="text-stone-600">{auth.user.email}</p>
                     </div>
                     <div>
                         <h1 className="text-xl">Name</h1>
-                        <p className="text-stone-600">name</p>
-                    </div>
-                    <div>
-                        <h1 className="text-xl">Cart</h1>
-                        <p className="text-stone-600">Cart...</p>
-                    </div>
-                    <div>
-                        <h1 className="text-xl">Orders</h1>
-                        <p className="text-stone-600">Orders...</p>
+                        <p className="text-stone-600">{auth.user.name}</p>
                     </div>
                 </div>
             </div>
