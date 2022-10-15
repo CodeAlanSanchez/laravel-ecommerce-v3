@@ -102,4 +102,8 @@ Route::post('/admin/{name}', function (Request $request, $name) {
     return Redirect::back();
 });
 
+// Order
+
+Route::resource('/orders', App\Http\Controllers\OrderController::class);
+
 require __DIR__ . '/auth.php';
