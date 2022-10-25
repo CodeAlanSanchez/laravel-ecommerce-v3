@@ -104,6 +104,6 @@ Route::post('/admin/{name}', function (Request $request, $name) {
 
 // Order
 
-Route::resource('/orders', App\Http\Controllers\OrderController::class);
+Route::resource('/orders', App\Http\Controllers\OrderController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
