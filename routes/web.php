@@ -77,7 +77,7 @@ Route::get('/checkout', function () {
 
     $cartItems = CartProduct::where('cart_id', $cart->id)->with('product')->orderBy('id')->get();
 
-    return Inertia::render('Checkout', ['cart_items' => $cartItems]);
+    return Inertia::render('Checkout', ['cart_items' => $cartItems, 'cart_id' => $cart->id]);
 });
 
 // Admin
