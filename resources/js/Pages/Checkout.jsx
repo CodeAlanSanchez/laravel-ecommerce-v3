@@ -1,8 +1,10 @@
 import Authenticated from "@/Layouts/Authenticated";
+import axios from "axios";
 
 export default function (props) {
     const auth = props.auth;
     const cartItems = props.cart_items;
+    const cartId = props.cart_id;
     const totalPrice = cartItems.reduce(
         (acc, i) => acc + i.product.price * i.amount,
         0
@@ -14,7 +16,7 @@ export default function (props) {
                 <h1 className="my-4 text-3xl">Checkout</h1>
                 <div className="flex flex-col md:flex-row justify gap-4 md:gap-12">
                     <Options />
-                    <Summary totalPrice={totalPrice} />
+                    <Summary totalPrice={totalPrice} cartId={cartId} />
                 </div>
             </div>
         </Authenticated>
@@ -66,7 +68,11 @@ function Options() {
     );
 }
 
-function Summary({ totalPrice }) {
+function Summary({ totalPrice, cartId }) {
+    const handleClick = () => {
+        axios.post("/orders", { cart_id: cartId });
+    };
+
     return (
         <div>
             <h2 className="my-4 text-xl text-gray-700">Total</h2>
@@ -77,7 +83,11 @@ function Summary({ totalPrice }) {
                 <hr className="border-2 border-t-0 border-gray-200 my-2 mb-4" />
                 <Detail k={"Total"} value={"$113.99"} />
             </div>
-            <button className="text-lg p-2 px-4 mt-6 w-fit shadow rounded bg-blue-500 text-white hover:bg-blue-400">
+            <button
+                type="button"
+                onClick={() => handleClick()}
+                className="text-lg p-2 px-4 mt-6 w-fit shadow rounded bg-blue-500 text-white hover:bg-blue-400"
+            >
                 Order
             </button>
         </div>
