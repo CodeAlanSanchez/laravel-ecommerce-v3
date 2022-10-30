@@ -17,6 +17,12 @@ export default function Authenticated({ auth, children }) {
                         Products
                     </Link>
                     <Link
+                        className="hover:text-sky-700 text-lg mr-12"
+                        href="/orders"
+                    >
+                        Orders
+                    </Link>
+                    <Link
                         className="hover:fill-sky-700 text-lg float-right ml-8"
                         href="/cart"
                     >
