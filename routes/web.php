@@ -60,7 +60,7 @@ Route::put('/products/{id}/favorite', [\App\Http\Controllers\ProductController::
 
 // Cart Routes
 
-Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->middleware(['auth'])->name('cart');
+Route::resource('/cart', \App\Http\Controllers\CartController::class)->middleware(['auth']);
 
 Route::delete('/cart/{id}', [\App\Http\Controllers\CartController::class, 'removeFromCart'])->middleware(['auth']);
 
@@ -70,15 +70,7 @@ Route::put('/cart/{id}/amount', [\App\Http\Controllers\CartController::class, 'c
 
 // Checkout
 
-Route::get('/checkout', function () {
-    $user = Auth::user();
-
-    $cart = Cart::where('user_id', $user->id)->first();
-
-    $cartItems = CartProduct::where('cart_id', $cart->id)->with('product')->orderBy('id')->get();
-
-    return Inertia::render('Checkout', ['cart_items' => $cartItems, 'cart_id' => $cart->id]);
-});
+Route::get('/checkout', \App\Http\Controllers\CheckoutController::class);
 
 // Admin
 
