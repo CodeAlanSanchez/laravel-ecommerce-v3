@@ -18,11 +18,6 @@ class Product extends Model
         'image_url'
     ];
 
-    protected $appends = [
-        'favorite',
-        'views'
-    ];
-
     public function trending()
     {
         return $this->hasOne(ProductAnalytics::class)->where('views', '>', '0');
