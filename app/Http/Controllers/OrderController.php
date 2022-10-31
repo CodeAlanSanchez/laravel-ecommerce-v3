@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderStoreRequest;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,15 +21,15 @@ class OrderController extends Controller
     {
         $data = $request->validated();
 
-        $products = Cart::first($data['cart_id'])->cartProducts();
+        $products = Cart::first($data['cart_id'])->cartProducts()->get();
 
         $order = Auth::user()->orders()->create();
 
         foreach ($products as $product) {
-            $product->cart = $order;
-            $product->save();
+            $order->orderItems->save($product->id);
+            $order->save();
         }
 
-        return redirect('products');
+        return response()->json($products);
     }
 }
