@@ -78,21 +78,7 @@ Route::get("/admin", function () {
     return Inertia::render('Admin');
 });
 
-Route::post('/admin/{name}', function (Request $request, $name) {
-
-    if ($image = $request->file('image')) {
-        $fileName = "";
-        match ($name) {
-            'placeholder' => $fileName = 'placeholder',
-            'men' => $fileName = 'men',
-            'women' => $fileName = 'women',
-        };
-
-        $image->storeAs('image', $fileName . ".png", 'public');
-    }
-
-    return Redirect::back();
-});
+Route::post('/admin/{name}', \App\Http\Controllers\ImagePlaceholderController::class);
 
 // Order
 
