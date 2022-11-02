@@ -37,6 +37,8 @@ Route::get('/', function () {
 Route::get('/', function () {
     $trending = Product::whereHas('trending')->limit(4)->get();
 
+    $trending->append(['views', 'favorite']);
+
     return Inertia::render('Welcome', ['products' => Product::all(), 'trending' => $trending]);
 })->middleware(['auth', 'verified'])->name('welcome');
 
