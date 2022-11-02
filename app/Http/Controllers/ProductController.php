@@ -26,14 +26,14 @@ class ProductController extends Controller
             return Inertia::render(
                 'Products',
                 [
-                    'products' => Product::where('gender', $gender)->get(),
+                    'products' => Product::where('gender', $gender)->setAppends(['favorite', 'views'])->get(),
                     'gender' => $gender, 'trending' => $trending->where('gender', $gender)->get()
                 ]
             );
         }
 
         return Inertia::render('Products', [
-            'products' => Product::all(),
+            'products' => Product::all()->append(['favorite', 'views']),
             'trending' => $trending->get()
         ]);
     }
@@ -89,7 +89,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::find($id)->with('productAnalytics');
 
         $product->productAnalytics->views = $product->productAnalytics->views + 1;
 
