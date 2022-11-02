@@ -32,15 +32,9 @@ Route::get('/', function () {
     ]);
 });
 
-// Welcome
+// Home
 
-Route::get('/', function () {
-    $trending = Product::whereHas('trending')->limit(4)->get();
-
-    $trending->append(['views', 'favorite']);
-
-    return Inertia::render('Welcome', ['products' => Product::all(), 'trending' => $trending]);
-})->middleware(['auth', 'verified'])->name('welcome');
+Route::get('/', \App\Http\Controllers\HomeController::class)->middleware(['auth', 'verified'])->name('welcome');
 
 // Dashboard
 
