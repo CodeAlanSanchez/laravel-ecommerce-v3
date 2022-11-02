@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function ProductItem({ product }) {
-    const [isFavorite, setIsFavorite] = useState(product.favorite.length > 0);
+    const [isFavorite, setIsFavorite] = useState(product?.favorite?.length > 0);
 
     return (
         <div>
@@ -11,6 +11,7 @@ export default function ProductItem({ product }) {
                 setFavorite={setIsFavorite}
                 id={product.id}
             />
+            <>{console.log(product)}</>
             <a
                 href={`/products/${product.id}`}
                 className="p-2 shadow h-80 bg-white hover:cursor-pointer flex flex-col justify-between"
