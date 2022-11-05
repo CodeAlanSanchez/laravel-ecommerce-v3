@@ -89,7 +89,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id)->with('productAnalytics');
+        $product = Product::with('productAnalytics')->find($id);
 
         $product->productAnalytics->views = $product->productAnalytics->views + 1;
 
