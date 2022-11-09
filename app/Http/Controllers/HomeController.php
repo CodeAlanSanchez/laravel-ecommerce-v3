@@ -14,6 +14,6 @@ class HomeController extends Controller
 
         $trending->append(['views', 'favorite']);
 
-        return Inertia::render('Welcome', ['products' => Product::all(), 'trending' => $trending]);
+        return Inertia::render('Welcome', ['products' => Product::all()->append(['favorite']), 'trending' => $trending]);
     }
 }
