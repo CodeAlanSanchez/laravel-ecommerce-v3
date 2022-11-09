@@ -56,7 +56,7 @@ Route::put('/products/{id}/favorite', [\App\Http\Controllers\ProductController::
 
 // Cart Routes
 
-Route::resource('/cart', \App\Http\Controllers\CartController::class)->middleware(['auth']);
+Route::resource('/cart', \App\Http\Controllers\CartController::class)->middleware(['auth'])->name('index', 'cart');
 
 Route::delete('/cart/{id}', [\App\Http\Controllers\CartController::class, 'removeFromCart'])->middleware(['auth']);
 
