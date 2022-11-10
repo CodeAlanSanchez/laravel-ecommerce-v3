@@ -66,7 +66,7 @@ Route::put('/cart/{id}/amount', [\App\Http\Controllers\CartController::class, 'c
 
 // Checkout
 
-Route::get('/checkout', \App\Http\Controllers\CheckoutController::class);
+Route::get('/checkout', \App\Http\Controllers\CheckoutController::class)->middleware(['auth']);
 
 // Admin
 
