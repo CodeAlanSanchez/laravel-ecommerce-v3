@@ -14,17 +14,29 @@ const Orders = (props) => {
 
                             return (
                                 <a key={order.id} href={`/orders/${order.id}`}>
-                                    <div className="bg-white shadow mb-4 p-4 flex flex-row">
-                                        <div className="w-fit mr-4">
+                                    <div className="bg-white shadow mb-4 p-4 flex flex-row justify-between">
+                                        <div className="w-fit">
                                             <div className="">Order Date</div>
-                                            <div className="w-full text-slate-500">
+                                            <div className="w-full text-gray-600">
                                                 {`${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`}
                                             </div>
                                         </div>
                                         <div className="w-fit">
                                             <div>Price</div>
-                                            <div className="text-red-500">
+                                            <div className="text-red-700">
                                                 ${order.price / 100}
+                                            </div>
+                                        </div>
+                                        <div className="w-fit">
+                                            <div>Address</div>
+                                            <div className="text-gray-600">
+                                                Default
+                                            </div>
+                                        </div>
+                                        <div className="w-fit">
+                                            <div>Payment</div>
+                                            <div className="text-gray-600">
+                                                Default
                                             </div>
                                         </div>
                                     </div>
