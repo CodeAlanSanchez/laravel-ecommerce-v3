@@ -1,4 +1,5 @@
 import Authenticated from "@/Layouts/Authenticated";
+import { Inertia } from "@inertiajs/inertia";
 import axios from "axios";
 
 export default function (props) {
@@ -70,7 +71,7 @@ function Options() {
 
 function Summary({ totalPrice, cartId }) {
     const handleClick = () => {
-        axios.post("/orders", { cart_id: cartId });
+        Inertia.post("/orders", { cart_id: cartId });
     };
 
     return (
