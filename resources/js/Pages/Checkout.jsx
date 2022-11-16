@@ -81,7 +81,7 @@ function Summary({ totalPrice, cartId }) {
                 <Detail k={"Shipping"} value={"$5"} />
                 <Detail k={"Taxes"} value={"$7.99"} />
                 <hr className="border-2 border-t-0 border-gray-200 my-2 mb-4" />
-                <Detail k={"Total"} value={"$113.99"} />
+                <Detail k={"Total"} value={`$${totalPrice / 100 + 5 + 7.99}`} />
             </div>
             <button
                 type="button"
