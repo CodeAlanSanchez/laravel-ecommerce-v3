@@ -23,7 +23,9 @@ const Orders = (props) => {
                                         </div>
                                         <div className="w-fit">
                                             <div>Price</div>
-                                            <div>{order.price}</div>
+                                            <div className="text-red-500">
+                                                ${order.price / 100}
+                                            </div>
                                         </div>
                                     </div>
                                 </a>
