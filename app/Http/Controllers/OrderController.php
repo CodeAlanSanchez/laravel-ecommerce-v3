@@ -42,7 +42,7 @@ class OrderController extends Controller
         $order->price = $price;
         $order->save();
 
-        return response()->json($products);
+        return Inertia::render('Orders', ['orders' => Auth::user()->orders()->get()]);
     }
 
     public function show(Order $order)
