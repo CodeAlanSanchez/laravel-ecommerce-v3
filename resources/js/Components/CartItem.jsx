@@ -20,7 +20,7 @@ export default function ({ item }) {
     };
 
     return (
-        <div className="flex gap-4 flex-initial border-x-0 border-t-0 border-b-2 last:border-none border-gray-200 py-4 w-full">
+        <div className="flex flex-col md:flex-row gap-4 flex-initial border-x-0 border-t-0 border-b-2 last:border-none border-gray-200 py-4 w-full">
             <img
                 className="aspect-square w-48 object-cover"
                 src={`/storage/${item.product.image_url}`}
@@ -57,7 +57,8 @@ export default function ({ item }) {
             </div>
             <div className="float-right">
                 <h3 className="text-lg text-red-700">
-                    ${item.product.price / 100}
+                    ${item.product.price / 100}{" "}
+                    <span className="text-gray-500 ml-1">each</span>
                 </h3>
             </div>
         </div>
