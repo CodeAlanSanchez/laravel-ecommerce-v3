@@ -14,7 +14,7 @@ const Orders = (props) => {
 
                             return (
                                 <a key={order.id} href={`/orders/${order.id}`}>
-                                    <div className="bg-white shadow mb-4 p-4 flex flex-row justify-between">
+                                    <div className="bg-white shadow mb-4 p-4 grid grid-flow-row grid-cols-2 gap-4">
                                         <div className="w-fit">
                                             <div className="">Order Date</div>
                                             <div className="w-full text-gray-600">
