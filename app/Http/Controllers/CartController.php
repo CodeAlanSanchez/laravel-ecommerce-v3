@@ -12,7 +12,7 @@ use Inertia\Inertia;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request)
+    public function store(Request $request)
     {
         $user = Auth::user();
 
@@ -46,7 +46,7 @@ class CartController extends Controller
         return Redirect::route('cart');
     }
 
-    public function removeFromCart($id)
+    public function destroy($id)
     {
         $user = Auth::user();
 

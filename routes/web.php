@@ -58,11 +58,12 @@ Route::put('/products/{id}/favorite', [\App\Http\Controllers\ProductController::
 
 Route::resource('/cart', \App\Http\Controllers\CartController::class)->middleware(['auth'])->name('index', 'cart');
 
-Route::delete('/cart/{id}', [\App\Http\Controllers\CartController::class, 'removeFromCart'])->middleware(['auth']);
+// Route::delete('/cart/{id}', [\App\Http\Controllers\CartController::class, 'removeFromCart'])->middleware(['auth']);
 
-Route::post('/cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->middleware(['auth']);
+// Route::post('/cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->middleware(['auth']);
 
 Route::put('/cart/{id}/amount', [\App\Http\Controllers\CartController::class, 'changeAmount'])->middleware(['auth']);
+
 
 // Checkout
 
