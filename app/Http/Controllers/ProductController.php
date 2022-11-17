@@ -32,7 +32,7 @@ class ProductController extends Controller
             return Inertia::render(
                 'Products',
                 [
-                    'products' => Product::where('gender', $gender)->setAppends(['favorite', 'views'])->get(),
+                    'products' => Product::where('gender', $gender)->get()->append(['favorite', 'views']),
                     'gender' => $gender, 'trending' => $trending
                 ]
             );
