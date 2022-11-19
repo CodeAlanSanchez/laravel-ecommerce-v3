@@ -43,7 +43,6 @@ const Order = (props) => {
                 <h2 className="text-xl mb-4">Products</h2>
                 {order.order_items.map(({ product }) => {
                     let amount = product.amount;
-                    product = product.product;
                     return (
                         <div
                             key={product.id}
