@@ -32,7 +32,7 @@ class OrderController extends Controller
         $price = 0;
 
         foreach ($products as $product) {
-            $order_item = OrderItem::create(['product_id' => $product->id, 'order_id' => $order->id]);
+            $order_item = OrderItem::create(['product_id' => $product->product->id, 'order_id' => $order->id, 'amount' => $product->amount]);
 
             $price = $price + $product->product->price;
 
@@ -47,7 +47,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load('orderItems.product.product');
+        $order->load('orderItems.product');
 
         return Inertia::render('Order', ['order' => $order]);
     }
