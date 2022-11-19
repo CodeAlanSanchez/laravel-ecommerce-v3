@@ -23,12 +23,7 @@ class CartProduct extends Model
     public function cart()
     {
         return $this->belongsTo(Cart::class);
-    }
-
-    public function orderItem()
-    {
-        return $this->belongsTo(OrderItem::class);
-    }
+}
 
     public function product()
     {
