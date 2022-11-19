@@ -44,9 +44,10 @@ const Order = (props) => {
                 {order.order_items.map(({ product }) => {
                     let amount = product.amount;
                     return (
-                        <div
+                        <a
                             key={product.id}
                             className="bg-white p-4 shadow mb-8 flex md:flex-row flex-col gap-4"
+                            href={`/products/${product.id}`}
                         >
                             <img
                                 src={`/storage/${product.image_url}`}
@@ -73,7 +74,7 @@ const Order = (props) => {
                                     {product.description}
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     );
                 })}
             </div>
