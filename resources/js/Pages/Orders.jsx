@@ -9,6 +9,7 @@ const Orders = (props) => {
                 <h1 className="text-3xl mb-4">Orders</h1>
                 <div className="bg-white shadow p-8">
                     <div>
+                        {orders?.length ? "" : "No orders found..."}
                         {orders?.map((order) => {
                             let date = new Date(order.created_at);
 
