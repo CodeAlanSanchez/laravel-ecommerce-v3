@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
     {
         Product::factory()->count(25)->create()->each(function ($product) {
             $product->productAnalytics()->create([
-                'product' => $product->id,
                 'views' => 0,
                 'favorites' => 0,
                 'cart_adds' => 0

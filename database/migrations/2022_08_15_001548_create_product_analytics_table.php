@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('product_analytics', function (Blueprint $table) {
             $table->id();
+            
             $table->unsignedBigInteger('views');
             $table->unsignedBigInteger('cart_adds');
             $table->unsignedBigInteger('favorites');
-
-            $table->foreignId('product')->nullable()->onDelete('cascade');
 
             $table->timestamps();
         });
