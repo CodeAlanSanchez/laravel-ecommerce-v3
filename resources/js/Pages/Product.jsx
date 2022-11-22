@@ -40,8 +40,8 @@ export default function Product(props) {
     return (
         <Authenticated auth={auth}>
             <Head title="Product" />
-            <div className="p-4">
-                <div className="md:mx-auto max-w-7xl shadow flex flex-col md:flex-row mt-16 bg-white">
+            <div>
+                <div className="md:mx-auto shadow flex flex-col md:flex-row mt-16 bg-white">
                     <div className="flex-1">
                         <img
                             src={`/storage/${product.image_url}`}

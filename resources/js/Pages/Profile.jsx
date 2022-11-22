@@ -5,7 +5,7 @@ export default function (props) {
 
     return (
         <Authenticated auth={auth}>
-            <div className="py-12 sm:px-24 px-4 max-w-7xl mx-auto">
+            <div>
                 <h1 className="text-3xl mb-4">Profile</h1>
                 <div className="bg-white p-4 shadow grid md:grid-cols-2 gap-4">
                     <div>

@@ -7,7 +7,7 @@ export default function (props) {
 
     return (
         <Authenticated auth={auth}>
-            <div className="max-w-7xl py-12 px-4 sm:px-24 mx-auto">
+            <div>
                 <h1 className="text-2xl mb-2">Admin Panel</h1>
                 <div className="bg-white shadow rounded p-4">
                     <h2 className="text-lg mb-2">Images</h2>

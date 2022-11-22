@@ -16,7 +16,7 @@ export default function Welcome(props) {
         <Authenticated auth={props.auth}>
             <Head title="Welcome" />
 
-            <div className="py-12 sm:px-24 px-4 max-w-7xl mx-auto">
+            <div>
                 <h1 className="text-xl mb-16">Body Type</h1>
                 <div className="pb-12 flex justify-center sm:justify-around align-middle flex-col sm:flex-row w-full">
                     {filters.map((i) => (

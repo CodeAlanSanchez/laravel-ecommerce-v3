@@ -13,7 +13,7 @@ export default function (props) {
 
     return (
         <Authenticated auth={auth}>
-            <div className="py-12 sm:px-24 px-4 max-w-7xl mx-auto">
+            <div>
                 <h1 className="my-4 text-3xl">Checkout</h1>
                 <div className="flex flex-col md:flex-row justify gap-4 md:gap-12">
                     <Options />

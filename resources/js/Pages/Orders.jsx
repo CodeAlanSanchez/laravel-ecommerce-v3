@@ -5,7 +5,7 @@ const Orders = (props) => {
     const orders = props.orders.length ? props.orders : [];
     return (
         <Authenticated auth={auth}>
-            <div className="max-w-7xl py-12 px-4 sm:px-24 mx-auto">
+            <div>
                 <h1 className="text-3xl mb-4">Orders</h1>
                 <div className="bg-white shadow p-8">
                     <div>

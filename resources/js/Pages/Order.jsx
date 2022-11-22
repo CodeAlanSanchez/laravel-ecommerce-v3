@@ -7,7 +7,7 @@ const Order = (props) => {
 
     return (
         <Authenticated auth={auth}>
-            <div className="max-w-7xl mx-auto px-4 py-12 sm:px-24">
+            <div>
                 <h1 className="text-3xl mb-4">Order</h1>
                 <div className="bg-white shadow p-4 mb-8">
                     <div>
