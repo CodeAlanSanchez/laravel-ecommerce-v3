@@ -3,14 +3,16 @@ import ProductItem from "./ProductItem";
 
 export default function ({ products, filter, trending }) {
     const [trenders, _] = useState(
-        trending.sort((a, b) => {
-            if (a.views < b.views) {
-                return 1;
-            } else if (a.views === b.views) {
-                return 0;
-            }
-            return -1;
-        })
+        trending
+            .sort((a, b) => {
+                if (a.product.views < b.product.views) {
+                    return 1;
+                } else if (a.product.views === b.product.views) {
+                    return 0;
+                }
+                return -1;
+            })
+            .map((i) => i.product)
     );
     return (
         <div>
