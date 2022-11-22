@@ -20,12 +20,13 @@ class ProductController extends Controller
      */
     public function index($gender = null)
     {
-        $trending = Product::whereHas('trending')->limit(4)->get();
-
-        $trending->append(['views', 'favorite']);
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(4)->get()->map(function ($t) {
+            $t->product->append(['views', 'favorite']);
+            return $t;
+        });
 
         if ($gender) {
-            $trenders = ProductAnalytics::whereHas('product', function ($q) use ($gender) {
+            $trending = ProductAnalytics::whereHas('product', function ($q) use ($gender) {
                 return $q->where('gender', $gender);
             })->where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(4)->get()->map(function ($t) {
                 $t->product->append(['views', 'favorite']);
@@ -36,7 +37,7 @@ class ProductController extends Controller
                 'Products',
                 [
                     'products' => Product::where('gender', $gender)->get()->append(['favorite', 'views']),
-                    'gender' => $gender, 'trending' => $trenders
+                    'gender' => $gender, 'trending' => $trending
                 ]
             );
         }
