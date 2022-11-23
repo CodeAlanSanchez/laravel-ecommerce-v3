@@ -19,7 +19,10 @@ export default (props) => {
     }
 
     return (
-        <form onSubmit={() => handleSubmit()} className="flex content-center">
+        <form
+            onSubmit={() => handleSubmit()}
+            className="flex content-center w-[50rem]"
+        >
             <Input
                 name="query"
                 type="text"
