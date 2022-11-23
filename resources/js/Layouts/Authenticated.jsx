@@ -50,7 +50,7 @@ export default function Authenticated({ auth, children }) {
                                     <span className="inline-flex rounded-md">
                                         <button
                                             type="button"
-                                            className="uppercase text-white inline-flex items-center border border-transparent text-lg rounded-md hover:fill-gray-400 focus:outline-none transition ease-in-out duration-150"
+                                            className="uppercase text-white inline-flex items-center border border-transparent text-2xl rounded-md hover:fill-gray-400 focus:outline-none transition ease-in-out duration-150"
                                         >
                                             {auth.user.name}
                                             <svg
