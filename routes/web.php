@@ -52,6 +52,7 @@ Route::get('/profile', function () {
 
 Route::resource('/products', \App\Http\Controllers\ProductController::class)->middleware(['auth', 'verified']);
 Route::get('/products/gender/{gender?}', [\App\Http\Controllers\ProductController::class, 'index'])->middleware('auth');
+Route::get('/new', [\App\Http\Controllers\ProductController::class, 'new'])->middleware('auth');
 Route::put('/products/{id}/favorite', [\App\Http\Controllers\ProductController::class, 'favorite'])->middleware('auth');
 
 // Cart Routes
