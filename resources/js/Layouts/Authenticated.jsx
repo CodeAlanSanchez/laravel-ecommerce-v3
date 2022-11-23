@@ -7,33 +7,33 @@ import Search from "@/Components/Search";
 export default function Authenticated({ auth, children }) {
     return (
         <div className="min-h-screen bg-gray-100">
-            <div className="bg-primary shadow">
-                <div className="sm:px-24 px-4 max-w-[96rem] mx-auto h-36 text-white flex items-center">
+            <div className="bg-primary">
+                <div className="sm:px-24 px-4 max-w-[120rem] mx-auto h-36 text-white flex items-center">
                     <nav className="flex w-full">
-                        <div className="basis-96 flex justify-between content-end pr-8">
+                        <div className="basis-[35rem] flex justify-between items-center pr-16">
                             <Link
-                                className="hover:fill-gray-400 text-xl h-min block"
+                                className="hover:fill-gray-400 text-2xl h-min block"
                                 href="/new"
                             >
                                 NEW
                             </Link>
                             <Link
-                                className="hover:fill-gray-400 text-xl h-min block"
+                                className="hover:fill-gray-400 text-2xl h-min block"
                                 href="/featured"
                             >
                                 FEATURED
                             </Link>
                             <Link
-                                className="hover:fill-gray-400 text-xl h-min block"
+                                className="hover:fill-gray-400 text-2xl h-min block"
                                 href="/products"
                             >
                                 SHOP
                             </Link>
                         </div>
-                        <div className="basis-96">
+                        <div className="basis-[50rem]">
                             <Search />
                         </div>
-                        <div className="basis-96 flex justify-around">
+                        <div className="basis-[35rem] flex justify-around items-center">
                             <Link
                                 className="hover:fill-gray-400 text-lg float-right ml-8"
                                 href="/cart"
@@ -41,7 +41,7 @@ export default function Authenticated({ auth, children }) {
                                 <Icon
                                     icon="material-symbols:shopping-cart-outline-rounded"
                                     color="white"
-                                    width={30}
+                                    width={36}
                                     className="hover:fill-white"
                                 />
                             </Link>
@@ -69,15 +69,15 @@ export default function Authenticated({ auth, children }) {
                                 </Dropdown.Trigger>
                                 <Dropdown.Content>
                                     <div className="p-4">
-                                        <div className="hover:text-sky-700 text-lg">
+                                        <div className="hover:text-sky-700">
                                             <Link
-                                                className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                                className="block w-full px-4 py-2 text-left text-xl leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
                                                 href="/profile"
                                             >
                                                 Profile
                                             </Link>
                                         </div>
-                                        <div className="hover:text-sky-700 text-lg">
+                                        <div className="hover:text-sky-700 text-xl">
                                             <Dropdown.Link href="/logout">
                                                 Logout
                                             </Dropdown.Link>
@@ -89,7 +89,7 @@ export default function Authenticated({ auth, children }) {
                     </nav>
                 </div>
             </div>
-            <main className="sm:px-24 py-12 px-4 max-w-[96rem] mx-auto">
+            <main className="sm:px-24 py-12 px-4 max-w-[120rem] mx-auto">
                 {children}
             </main>
         </div>
