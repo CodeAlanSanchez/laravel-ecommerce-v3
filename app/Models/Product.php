@@ -15,7 +15,8 @@ class Product extends Model
         'price',
         'discount_price',
         'gender',
-        'image_url'
+        'image_url',
+        'featured'
     ];
 
     public function trending()

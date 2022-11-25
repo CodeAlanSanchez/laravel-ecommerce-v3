@@ -202,4 +202,14 @@ class ProductController extends Controller
 
         return Inertia::render('Products', ['products' => Product::orderBy('created_at', 'asc')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
     }
+
+    public function featured()
+    {
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(4)->get()->map(function ($t) {
+            $t->product->append(['views', 'favorite']);
+            return $t;
+        });
+
+        return Inertia::render('Products', ['products' => Product::where('featured')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
+    }
 }

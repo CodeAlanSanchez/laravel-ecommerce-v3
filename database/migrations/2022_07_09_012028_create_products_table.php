@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("description");
             $table->integer("price");
             $table->string("image_url");
+            $table->boolean("featured")->default(0);
             $table->timestamps();
         });
     }
