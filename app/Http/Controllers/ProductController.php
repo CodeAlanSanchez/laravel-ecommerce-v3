@@ -195,7 +195,7 @@ class ProductController extends Controller
 
     public function new()
     {
-        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(4)->get()->map(function ($t) {
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(6)->get()->map(function ($t) {
             $t->product->append(['views', 'favorite']);
             return $t;
         });
