@@ -12,7 +12,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Poppins", ...defaultTheme.fontFamily.sans],
+                sans: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primary: "#28305E",
