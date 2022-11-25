@@ -13,6 +13,7 @@ export default function (props) {
         discount_price: "",
         gender: "",
         image: "",
+        featured: false,
     });
 
     function submit(e) {
@@ -56,7 +57,7 @@ export default function (props) {
                             name="name"
                             type="text"
                             value={data.name}
-                            className="mb-4 mt-2 block w-full after:text-red-400l"
+                            className="mb-4 mt-2 block w-full after:text-red-400"
                             autoComplete="name"
                             handleChange={onHandleChange}
                             isFocused={true}
@@ -94,6 +95,20 @@ export default function (props) {
                             className="mb-4 mt-2 block w-full"
                             autoComplete="price"
                             handleChange={onHandleChange}
+                        />
+                        <Label
+                            forInput="featured"
+                            value="Featured"
+                            className="required after:text-red-400"
+                        />
+                        <Input
+                            name="featured"
+                            type="checkbox"
+                            value={data.featured}
+                            className="mb-4 mt-2 w-8 h-8 after:text-red-400"
+                            autoComplete="featured"
+                            handleChange={onHandleChange}
+                            isFocused={false}
                         />
                         {errors.discount_price && (
                             <div className="text-red-400">
