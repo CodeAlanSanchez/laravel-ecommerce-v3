@@ -3,6 +3,7 @@ import Dropdown from "@/Components/Dropdown";
 import { Link } from "@inertiajs/inertia-react";
 import { Icon } from "@iconify/react";
 import Search from "@/Components/Search";
+import HeaderBanner from "@/Components/HeaderBanner";
 
 export default function Authenticated({ auth, children }) {
     return (
@@ -89,6 +90,7 @@ export default function Authenticated({ auth, children }) {
                     </nav>
                 </div>
             </div>
+            <HeaderBanner />
             <main className="sm:px-24 py-12 px-4 max-w-[120rem] mx-auto">
                 {children}
             </main>
