@@ -79,7 +79,7 @@ export default function Product(props) {
 const ProductInfo = ({ product, onCart }) => {
     return (
         <>
-            <h1 className="text-2xl mb-1">{product.name}</h1>
+            <h1 className="text-4xl font-semibold mb-4">{product.name}</h1>
             {product.discounted_price ? (
                 <>
                     <h1 className="text-xl mb-2 text-stone-700 line-through">
@@ -90,16 +90,14 @@ const ProductInfo = ({ product, onCart }) => {
                     </h1>
                 </>
             ) : (
-                <h1 className="text-xl mb-2 text-red-600">
+                <h1 className="text-2xl mb-4 text-red-600">
                     ${product.price / 100}
                 </h1>
             )}
-            <h1 className="text-xl mb-4 text-stone-700">
-                {product.description}
-            </h1>
+            <h1 className="text-2xl mb-6">{product.description}</h1>
             <button
                 onClick={(e) => onCart(e)}
-                className="text-xl py-2 px-4 w-fit shadow rounded bg-blue-500 text-white hover:bg-blue-400"
+                className="text-2xl py-2 px-4 w-fit shadow rounded bg-blue-500 text-white hover:bg-blue-400"
             >
                 Add To Cart
             </button>
