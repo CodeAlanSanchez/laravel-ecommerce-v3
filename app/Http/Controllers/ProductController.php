@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index($gender = null)
     {
-        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(4)->get()->map(function ($t) {
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(6)->get()->map(function ($t) {
             $t->product->append(['views', 'favorite']);
             return $t;
         });
@@ -28,7 +28,7 @@ class ProductController extends Controller
         if ($gender) {
             $trending = ProductAnalytics::whereHas('product', function ($q) use ($gender) {
                 return $q->where('gender', $gender);
-            })->where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(4)->get()->map(function ($t) {
+            })->where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(6)->get()->map(function ($t) {
                 $t->product->append(['views', 'favorite']);
                 return $t;
             });
@@ -205,7 +205,7 @@ class ProductController extends Controller
 
     public function featured()
     {
-        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(4)->get()->map(function ($t) {
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(6)->get()->map(function ($t) {
             $t->product->append(['views', 'favorite']);
             return $t;
         });
