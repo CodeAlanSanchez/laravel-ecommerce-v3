@@ -3,6 +3,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { Head, useForm } from "@inertiajs/inertia-react";
 import { useEffect, useState } from "react";
 import Label from "@/Components/Label";
+import ProductAnalytics from "@/Components/ProductAnalytics";
 import Input from "@/Components/Input";
 
 export default function Product(props) {
@@ -20,7 +21,6 @@ export default function Product(props) {
         setData({
             ...arr,
         });
-        console.log(arr);
     }, []);
 
     const onCart = (e) => {
@@ -66,6 +66,9 @@ export default function Product(props) {
                         ) : (
                             <ProductInfo product={product} onCart={onCart} />
                         )}
+                        <ProductAnalytics
+                            analytics={product.product_analytics}
+                        />
                     </div>
                 </div>
             </div>
