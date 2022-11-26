@@ -10,6 +10,7 @@ export default function (props) {
         (acc, i) => acc + i.product.price * i.amount,
         0
     );
+    const shipping = totalPrice > 35 ? 0 : 5.99;
 
     return (
         <Authenticated auth={auth}>
@@ -17,7 +18,11 @@ export default function (props) {
                 <h1 className="my-4 text-3xl">Checkout</h1>
                 <div className="flex flex-col md:flex-row justify gap-4 md:gap-12">
                     <Options />
-                    <Summary totalPrice={totalPrice} cartId={cartId} />
+                    <Summary
+                        totalPrice={totalPrice}
+                        cartId={cartId}
+                        shipping={shipping}
+                    />
                 </div>
             </div>
         </Authenticated>
@@ -69,7 +74,7 @@ function Options() {
     );
 }
 
-function Summary({ totalPrice, cartId }) {
+function Summary({ totalPrice, cartId, shipping }) {
     const handleClick = () => {
         Inertia.post("/orders", { cart_id: cartId });
     };
@@ -79,7 +84,7 @@ function Summary({ totalPrice, cartId }) {
             <h2 className="my-4 text-xl text-gray-700">Total</h2>
             <div className="bg-white rounded p-4 md:p-8 md:text-lg shadow flex flex-col text-gray-700">
                 <Detail k={"Subtotal"} value={`$${totalPrice / 100}`} />
-                <Detail k={"Shipping"} value={"$5"} />
+                <Detail k={"Shipping"} value={`$${shipping}`} />
                 <Detail k={"Taxes"} value={"$7.99"} />
                 <hr className="border-2 border-t-0 border-gray-200 my-2 mb-4" />
                 <Detail k={"Total"} value={`$${totalPrice / 100 + 5 + 7.99}`} />
