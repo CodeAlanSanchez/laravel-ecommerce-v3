@@ -12,10 +12,6 @@ const Products = (props) => {
             <Head title="Products" />
 
             <div>
-                <h1 className="text-3xl inline-block mr-2">Products</h1>{" "}
-                <span className="text-blue-400 hover:underline">
-                    <Link href="/products/create">Create</Link>
-                </span>
                 {gender ? (
                     <p className="text-xl font-light text-gray-600 mb-6 capitalize">
                         {gender}

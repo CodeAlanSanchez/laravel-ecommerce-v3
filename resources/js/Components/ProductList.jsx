@@ -16,8 +16,8 @@ export default function ({ products, filter, trending }) {
     );
     return (
         <div>
-            <h1 className="text-xl my-4">Trending</h1>
-            <div className="grid text-2xl sm:grid-cols-2 lg:grid-cols-6 lg:txt-xl gap-4">
+            <h1 className="text-4xl font-medium my-8">Trending</h1>
+            <div className="grid text-2xl sm:grid-cols-2 lg:grid-cols-6 lg:txt-xl gap-4 mb-12">
                 {trending?.length === 0 ? (
                     <p className="text-sm text-gray-600 font-light">
                         No products found...
@@ -26,7 +26,7 @@ export default function ({ products, filter, trending }) {
                     trenders.map((t) => <ProductItem key={t.id} product={t} />)
                 )}
             </div>
-            <h1 className="text-xl my-4">Products</h1>
+            <h1 className="text-4xl font-medium my-8">Products</h1>
             <div className="grid text-2xl sm:grid-cols-2 lg:grid-cols-6 lg:text-xl gap-4">
                 {products.length === 0 ? (
                     <p className="text-sm text-gray-600 font-light">
