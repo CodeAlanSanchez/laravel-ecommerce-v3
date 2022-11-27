@@ -4,7 +4,6 @@ import ProductsList from "@/Components/ProductsList";
 
 const Products = (props) => {
     const products = props.products;
-    const trending = props.trending.map((t) => t.product);
     const title = props.title;
     const gender = props.gender;
 
@@ -20,7 +19,14 @@ const Products = (props) => {
                 ) : (
                     <div className="mb-4" />
                 )}
-                <ProductsList title={"Trending"} products={trending} />
+                {props.trending?.length > 0 ? (
+                    <ProductsList
+                        title={"Trending"}
+                        products={props.trending.map((t) => t.product)}
+                    />
+                ) : (
+                    ""
+                )}
                 <ProductsList title={title} products={products} />
             </div>
         </Authenticated>
