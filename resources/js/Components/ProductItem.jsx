@@ -18,7 +18,7 @@ export default function ProductItem({ product }) {
                 <img
                     src={`/storage/${product.image_url}`}
                     alt={product.name}
-                    className="object-contain max-h-56 border-b-[1px] border-slate-400"
+                    className="object-contain max-h-56 pb-4 border-b-[1px] border-slate-400"
                 />
                 <div>
                     <h4 className="text-black text-lg">{product.name}</h4>
