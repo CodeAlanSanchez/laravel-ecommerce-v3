@@ -1,12 +1,6 @@
 <?php
 
-use App\Models\Cart;
-use App\Models\CartProduct;
-use App\Models\Product;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
