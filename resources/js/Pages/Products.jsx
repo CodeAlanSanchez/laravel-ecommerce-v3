@@ -1,10 +1,11 @@
-import { Head, Link } from "@inertiajs/inertia-react";
+import { Head } from "@inertiajs/inertia-react";
 import Authenticated from "@/Layouts/Authenticated";
-import ProductList from "@/Components/ProductList";
+import ProductsList from "@/Components/ProductsList";
 
 const Products = (props) => {
     const products = props.products;
-    const trending = props.trending;
+    const trending = props.trending.map((t) => t.product);
+    const title = props.title;
     const gender = props.gender;
 
     return (
@@ -19,7 +20,8 @@ const Products = (props) => {
                 ) : (
                     <div className="mb-4" />
                 )}
-                <ProductList trending={trending} products={products} />
+                <ProductsList title={"Trending"} products={trending} />
+                <ProductsList title={title} products={products} />
             </div>
         </Authenticated>
     );
