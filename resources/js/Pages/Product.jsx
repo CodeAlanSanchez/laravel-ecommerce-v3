@@ -41,14 +41,14 @@ export default function Product(props) {
         <Authenticated auth={auth}>
             <Head title="Product" />
             <div>
-                <div className="md:mx-auto shadow flex flex-col md:flex-row mt-16 bg-white">
+                <div className="md:mx-auto border-slate-400 border-[1px] flex flex-col md:flex-row mt-16 bg-white">
                     <div className="flex-1">
                         <img
                             src={`/storage/${product.image_url}`}
                             alt={product.name}
                         />
                     </div>
-                    <div className="p-8 border-x-0 border-b-0 md:border-y-0 md:border-0 md:border-l-2 border-t-gray-100 border-2 flex-1">
+                    <div className="p-8 border-x-0 border-b-0 md:border-y-0 md:border-0 md:border-l-[1px] border-slate-400 border-2 flex-1">
                         <button
                             onClick={() => setEdit((prev) => !prev)}
                             className="text-blue-500 text-lg hover:underline"
