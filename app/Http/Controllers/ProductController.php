@@ -36,7 +36,7 @@ class ProductController extends Controller
             return Inertia::render(
                 'Products',
                 [
-                    'title' => $gender . ' Products',
+                    'title' => ucfirst($gender) . ' Products',
                     'products' => Product::where('gender', $gender)->orderBy('created_at', 'desc')->get()->append(['favorite', 'views']),
                     'gender' => $gender, 'trending' => $trending
                 ]
