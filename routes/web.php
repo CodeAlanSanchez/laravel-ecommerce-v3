@@ -56,6 +56,8 @@ Route::get('/featured', [\App\Http\Controllers\ProductController::class, 'featur
 Route::get('/new', [\App\Http\Controllers\ProductController::class, 'new'])->middleware('auth');
 Route::put('/products/{id}/favorite', [\App\Http\Controllers\ProductController::class, 'favorite'])->middleware('auth');
 
+Route::get('/search', \App\Http\Controllers\SearchController::class)->middleware('auth');
+
 // Cart Routes
 
 Route::resource('/cart', \App\Http\Controllers\CartController::class)->middleware(['auth'])->name('index', 'cart');
