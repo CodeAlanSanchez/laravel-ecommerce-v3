@@ -9,12 +9,12 @@ const Order = (props) => {
         <Authenticated auth={auth}>
             <div>
                 <h1 className="text-3xl mb-4">Order</h1>
-                <div className="bg-white shadow p-4 mb-8">
+                <div className="bg-white border-slate-400 border-[1px] p-4 mb-8">
                     <div>
                         <h2 className="text-2xl mb-4 text-slate-900">
                             Summary
                         </h2>
-                        <hr className="mb-4" />
+                        <hr className="mb-4 border-slate-400" />
                         <div className="grid grid-flow-row grid-cols-2 gap-4">
                             <div>
                                 <div>Order Placed</div>
@@ -46,7 +46,7 @@ const Order = (props) => {
                     return (
                         <a
                             key={product.id}
-                            className="bg-white p-4 shadow mb-8 flex md:flex-row flex-col gap-4"
+                            className="bg-white p-4 border-slate-400 border-[1px] mb-8 flex md:flex-row flex-col gap-4"
                             href={`/products/${product.id}`}
                         >
                             <img

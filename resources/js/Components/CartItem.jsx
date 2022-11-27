@@ -20,7 +20,7 @@ export default function ({ item }) {
     };
 
     return (
-        <div className="flex flex-col md:flex-row gap-4 flex-initial border-x-0 border-t-0 border-b-2 last:border-none border-gray-200 py-4 w-full">
+        <div className="flex flex-col md:flex-row gap-4 flex-initial border-x-0 border-t-0 border-b-[1px] last:border-none border-slate-400 py-4 w-full">
             <img
                 className="aspect-square w-48 object-cover"
                 src={`/storage/${item.product.image_url}`}

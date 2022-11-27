@@ -33,11 +33,11 @@ function Options() {
     return (
         <div>
             <h2 className="my-4 text-xl text-gray-700">Payment Options</h2>
-            <div className="shadow border-blue-400 border-2 bg-white rounded p-4 flex flew-row hover:cursor-pointer">
+            <div className="border-blue-400 border-2 bg-white rounded p-4 flex flew-row hover:cursor-pointer">
                 <div className="text-blue-400 text-2xl">•</div>
                 <div className="ml-4 text-xl">Default Credit Card</div>
             </div>
-            <div className="shadow bg-white mt-4 rounded p-4 flex flew-row hover:cursor-not-allowed">
+            <div className="bg-white border-slate-400 border-[1px] mt-4 rounded p-4 flex flew-row hover:cursor-not-allowed">
                 <div className="text-gray-400 text-2xl">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -52,11 +52,11 @@ function Options() {
                 </div>
             </div>
             <h2 className="mb-4 mt-8 text-xl text-gray-700">Address</h2>
-            <div className="shadow border-blue-400 border-2 bg-white rounded p-4 flex flew-row hover:cursor-pointer">
+            <div className="border-blue-400 border-2 bg-white rounded p-4 flex flew-row hover:cursor-pointer">
                 <div className="text-blue-400 text-2xl">•</div>
                 <div className="ml-4 text-xl">Default Address</div>
             </div>
-            <div className="shadow bg-white mt-4 rounded p-4 flex flew-row hover:cursor-not-allowed">
+            <div className="border-slate-400 border-[1px] bg-white mt-4 rounded p-4 flex flew-row hover:cursor-not-allowed">
                 <div className="text-gray-400 text-2xl">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ function Summary({ totalPrice, cartId, shipping }) {
     return (
         <div>
             <h2 className="my-4 text-xl text-gray-700">Total</h2>
-            <div className="bg-white rounded p-4 md:p-8 md:text-lg shadow flex flex-col text-gray-700">
+            <div className="bg-white rounded p-4 md:p-8 md:text-lg border-slate-400 border-[1px] flex flex-col text-gray-700">
                 <Detail k={"Subtotal"} value={`$${totalPrice / 100}`} />
                 <Detail k={"Shipping"} value={`$${shipping}`} />
                 <Detail k={"Taxes"} value={"$7.99"} />

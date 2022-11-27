@@ -12,8 +12,10 @@ export default function (props) {
 
             <div>
                 <h1 className="text-3xl mb-4">Cart</h1>
-                <div className="bg-white p-4 shadow">
-                    <h4 className="text-xl pb-2 border-b-2">Your Items</h4>
+                <div className="bg-white p-4 border-slate-400 border-[1px]">
+                    <h4 className="text-xl pb-2 border-b-[1px] border-slate-400">
+                        Your Items
+                    </h4>
                     <CartList cartItems={cartItems} />
                 </div>
             </div>
