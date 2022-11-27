@@ -36,6 +36,7 @@ class ProductController extends Controller
             return Inertia::render(
                 'Products',
                 [
+                    'title' => $gender . ' Products',
                     'products' => Product::where('gender', $gender)->orderBy('created_at', 'desc')->get()->append(['favorite', 'views']),
                     'gender' => $gender, 'trending' => $trending
                 ]
@@ -43,6 +44,7 @@ class ProductController extends Controller
         }
 
         return Inertia::render('Products', [
+            'title' => 'Products',
             'products' => Product::orderBy('created_at', 'asc')->get()->append(['favorite', 'views']),
             'trending' => $trending
         ]);
@@ -200,7 +202,7 @@ class ProductController extends Controller
             return $t;
         });
 
-        return Inertia::render('Products', ['products' => Product::orderBy('created_at', 'asc')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
+        return Inertia::render('Products', ['title' => 'Newest Arrivals', 'products' => Product::orderBy('created_at', 'asc')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
     }
 
     public function featured()
@@ -210,6 +212,6 @@ class ProductController extends Controller
             return $t;
         });
 
-        return Inertia::render('Products', ['products' => Product::where('featured')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
+        return Inertia::render('Products', ['title' => 'Featured', 'products' => Product::where('featured')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
     }
 }
