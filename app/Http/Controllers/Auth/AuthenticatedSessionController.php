@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/dashboard');
+        return redirect('/products');
     }
 
     /**
