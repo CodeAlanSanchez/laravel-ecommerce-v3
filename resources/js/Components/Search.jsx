@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { useForm } from "@inertiajs/inertia-react";
 
 export default (props) => {
-    const { data, setData, post } = useForm({ query: "" });
+    const { data, setData, get } = useForm({ query: "" });
 
     function onHandleChange(event) {
         setData(
@@ -14,13 +14,15 @@ export default (props) => {
         );
     }
 
-    function handleSubmit() {
-        post();
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        get("/search");
     }
 
     return (
         <form
-            onSubmit={() => handleSubmit()}
+            onSubmit={(e) => handleSubmit(e)}
             className="flex content-center w-[50rem]"
         >
             <Input
