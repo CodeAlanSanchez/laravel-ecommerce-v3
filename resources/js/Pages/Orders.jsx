@@ -7,7 +7,7 @@ const Orders = (props) => {
         <Authenticated auth={auth}>
             <div>
                 <h1 className="text-3xl mb-4">Orders</h1>
-                <div className="bg-white shadow p-8">
+                <div className="bg-white border-slate-400 border-[1px] p-8">
                     <div>
                         {orders?.length ? "" : "No orders found..."}
                         {orders?.map((order) => {
@@ -15,7 +15,7 @@ const Orders = (props) => {
 
                             return (
                                 <a key={order.id} href={`/orders/${order.id}`}>
-                                    <div className="bg-white shadow mb-4 p-4 grid grid-flow-row grid-cols-2 gap-4">
+                                    <div className="bg-white border-slate-400 border-[1px] mb-4 p-4 grid grid-flow-row grid-cols-2 gap-4">
                                         <div className="w-fit">
                                             <div className="">Order Date</div>
                                             <div className="w-full text-gray-600">
