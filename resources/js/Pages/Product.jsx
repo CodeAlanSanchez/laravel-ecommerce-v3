@@ -5,12 +5,21 @@ import { useEffect, useState } from "react";
 import Label from "@/Components/Label";
 import ProductAnalytics from "@/Components/ProductAnalytics";
 import Input from "@/Components/Input";
+import Checkbox from "@/Components/Checkbox";
 
 export default function Product(props) {
     const auth = props.auth;
     const product = props.product;
-    const [amount, setAmount] = useState(1);
-    const { data, setData, put, errors } = useForm(product);
+    const { data, setData, put, errors } = useForm({
+        name: product.name,
+        description: product.description,
+        featured: product.featured ? true : false,
+        price: product.price,
+        image: "",
+        discount_price: product.discount_price,
+        clothing_type: product.clothing_type,
+        gender: product.gender,
+    });
     const [edit, setEdit] = useState(false);
 
     useEffect(() => {
@@ -21,12 +30,13 @@ export default function Product(props) {
         setData({
             ...arr,
         });
+        console.log(data);
     }, []);
 
     const onCart = (e) => {
         e.preventDefault();
 
-        Inertia.post("/cart", { product_id: product.id, amount });
+        Inertia.post("/cart", { product_id: product.id, amount: 1 });
     };
 
     const handleSubmit = (e) => {
@@ -113,6 +123,7 @@ const EditForm = ({ handleSubmit, data, setData, errors }) => {
                 ? event.target.checked
                 : event.target.value
         );
+        console.log(event.target.type === "checkbox" && event.target.checked);
     };
 
     return (
@@ -150,6 +161,17 @@ const EditForm = ({ handleSubmit, data, setData, errors }) => {
                     value={data.description}
                     className="mb-4 mt-2 block w-full"
                     autoComplete="description"
+                    handleChange={onHandleChange}
+                />
+                <Label
+                    forInput="featured"
+                    value="Featured"
+                    className="required after:text-red-400"
+                />
+                <Checkbox
+                    name="featured"
+                    value={data.featured}
+                    className="mb-4 mt-2 block w-8 h-8"
                     handleChange={onHandleChange}
                 />
                 {errors.price && (
