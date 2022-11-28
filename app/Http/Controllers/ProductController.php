@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index($gender = null)
     {
-        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(6)->get()->map(function ($t) {
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'desc')->limit(6)->get()->map(function ($t) {
             $t->product->append(['views', 'favorite']);
             return $t;
         });
@@ -37,7 +37,7 @@ class ProductController extends Controller
                 'Products',
                 [
                     'title' => ucfirst($gender) . ' Products',
-                    'products' => Product::where('gender', $gender)->orderBy('created_at', 'desc')->get()->append(['favorite', 'views']),
+                    'products' => Product::where('gender', $gender)->orderBy('created_at', 'asc')->get()->append(['favorite', 'views']),
                     'gender' => $gender, 'trending' => $trending
                 ]
             );
@@ -74,6 +74,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'discount' => 'numeric',
             'image' => 'required|max:12000',
+            'featured' => 'required',
             'gender' => 'alpha',
         ]);
 
@@ -139,19 +140,22 @@ class ProductController extends Controller
             'image' => 'max:12000',
             'discount' => 'numeric',
             'gender' => 'alpha|nullable',
+            'featured' => 'required'
         ]);
 
-        unset($validated['image']);
-
-        if ($file = $request->file('image')) {
+        if ($validated['image'] != null && $file = $request->file('image')) {
             $image_path = $file->store('image', 'public');
+
+            dd("jsahdjhak");
 
             $validated['image_url'] = $image_path;
         }
 
+        unset($validated['image']);
+
         $product->update(array_merge($validated));
 
-        return Redirect::route('products.show', ['product' => $product]);
+        return Inertia::render('products.show', ['product' => $product]);
     }
 
     /**
@@ -197,21 +201,21 @@ class ProductController extends Controller
 
     public function new()
     {
-        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(6)->get()->map(function ($t) {
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'desc')->limit(6)->get()->map(function ($t) {
             $t->product->append(['views', 'favorite']);
             return $t;
         });
 
-        return Inertia::render('Products', ['title' => 'Newest Arrivals', 'products' => Product::orderBy('created_at', 'asc')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
+        return Inertia::render('Products', ['title' => 'Newest Arrivals', 'products' => Product::orderBy('created_at', 'desc')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
     }
 
     public function featured()
     {
-        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'asc')->limit(6)->get()->map(function ($t) {
+        $trending = ProductAnalytics::where('views', '>', '0')->with('product')->orderBy('views', 'desc')->limit(6)->get()->map(function ($t) {
             $t->product->append(['views', 'favorite']);
             return $t;
         });
 
-        return Inertia::render('Products', ['title' => 'Featured', 'products' => Product::where('featured')->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
+        return Inertia::render('Products', ['title' => 'Featured', 'products' => Product::where('featured', '=', 1)->limit(20)->get()->append(['favorite']), 'trending' => $trending]);
     }
 }
