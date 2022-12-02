@@ -41,27 +41,28 @@ const Order = (props) => {
                     </div>
                 </div>
                 <h2 className="text-xl mb-4">Products</h2>
-                {order.order_items.map(({ product }) => {
-                    let amount = product.amount;
+                {order.order_items.map((item) => {
+                    const { id, name, description, price, image_url } =
+                        item.product;
+                    const amount = item.amount;
                     return (
                         <a
-                            key={product.id}
+                            key={id}
                             className="bg-white p-4 border-slate-400 border-[1px] mb-8 flex md:flex-row flex-col gap-4"
-                            href={`/products/${product.id}`}
+                            href={`/products/${id}`}
                         >
                             <img
-                                src={`/storage/${product.image_url}`}
-                                alt={product.name}
-                                className="h-auto"
+                                src={`/storage/${image_url}`}
+                                alt={name}
+                                className="w-56"
                             />
                             <div>
-                                <>{console.log(product)}</>
                                 <div className="flex flex-row gap-4 mb-2">
                                     <div className="text-xl leading-5 bottom">
-                                        {product.name}
+                                        {name}
                                     </div>
                                     <div className="text-red-700 leading-5 bottom">
-                                        ${(product.price * 2) / 100}
+                                        ${(price * 2) / 100}
                                     </div>
                                     <div className="leading-5 bottom">
                                         <span className="mr-2">Amount:</span>
@@ -71,7 +72,7 @@ const Order = (props) => {
                                     </div>
                                 </div>
                                 <div className="text-gray-600">
-                                    {product.description}
+                                    {description}
                                 </div>
                             </div>
                         </a>
